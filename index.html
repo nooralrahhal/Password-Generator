@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="/src/style.css" as="style" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="modulepreload" href="/src/main.js" />
+    <title>Password Generator</title>
+  </head>
+  <body class="flex items-center justify-center h-screen bg-black">
+    <main class="w-md mx-auto my-0">
+      <h1
+        class="text-lg mb-5 text-center font-family text-stone-100 opacity-60 font-light"
+      >
+        Password Generator
+      </h1>
+
+      <section
+        class="flex items-center justify-between h-14 py-0 px-4 mb-4 bg-stone-950 border-2 rounded-xs"
+      >
+        <div
+          id="generated-password"
+          class="text-stone-300 font-medium font-family text-lg"
+        >
+          <span
+            class="text-stone-500 font-medium font-family opacity-40 text-lg"
+            >P4$5W0rD!</span
+          >
+        </div>
+
+        <button
+          id="copy-btn"
+          class="flex items-center gap-1 text-green-500 cursor-pointer font-normal opacity-80 text-xs hover:text-green-900"
+        >
+          <span
+            class="text-green-400 font-normal text-sm font-family"
+            id="copied-text"
+            style="display: none"
+            >Copied!</span
+          >
+          <span id="copy-span">COPY</span>
+          <svg
+            id="copy-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 42 24"
+            fill="currentColor"
+            class="size-6 stroke-green-500 stroke-1"
+          >
+            <path
+              d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 0 1 3.75 3.75v1.875C13.5 8.161 14.34 9 15.375 9h1.875A3.75 3.75 0 0 1 21 12.75v3.375C21 17.16 20.16 18 19.125 18h-9.75A1.875 1.875 0 0 1 7.5 16.125V3.375Z"
+            />
+            <path
+              class="fill-transparent"
+              d="M15 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 17.25 7.5h-1.875A.375.375 0 0 1 15 7.125V5.25ZM4.875 6H6v10.125A3.375 3.375 0 0 0 9.375 19.5H16.5v1.125c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V7.875C3 6.839 3.84 6 4.875 6Z"
+            />
+          </svg>
+        </button>
+      </section>
+
+      <form class="bg-stone-950 border-2 rounded-xs py-6 px-5">
+        <div class="flex items-center justify-between mb-2 px-2.5">
+          <p class="text-stone-300 opacity-75 text-sm font-family font-normal">
+            Character Length
+          </p>
+          <span class="text-2xl text-green-500 font-family" id="char-count"
+            >0</span
+          >
+        </div>
+
+        <input
+          type="range"
+          id="range-input"
+          class="w-full h-1.5 rounded-xs appearance-none cursor-pointer peer mb-7"
+          style="background: linear-gradient(to right, #4ad85a 0%, #252429 0%)"
+          min="1"
+          max="25"
+          value="0"
+        />
+
+        <div class="mb-7">
+          <div class="flex items-center mb-3 gap-4">
+            <input
+              type="checkbox"
+              id="uppercase-letters"
+              name="password-includes"
+              value="uppercase-letters"
+              class="relative peer appearance-none w-4 h-4 bg-transparent border-2 border-green-100 mt-1 checked:bg-green-500 checked:border-0 cursor-pointer hover:border-green-500"
+            />
+            <label
+              for="uppercase-letters"
+              class="text-stone-300 font-medium font-family text-sm mt-1"
+              >Include Uppercase Letters</label
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              class="size-6 absolute w-4 h-4 mt-1 text-black hidden peer-checked:block pointer-events-none"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+
+          <div class="flex items-center mb-3 gap-4">
+            <input
+              type="checkbox"
+              id="lowercase-letters"
+              name="password-includes"
+              value="lowercase-letters"
+              class="relative peer appearance-none w-4 h-4 bg-transparent border-2 border-green-100 mt-1 checked:bg-green-400 checked:border-0 cursor-pointer hover:border-green-500"
+            />
+            <label
+              for="lowercase-letters"
+              class="text-stone-300 font-medium font-family text-sm mt-1"
+              >Include Lowercase Letters</label
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              class="size-6 absolute w-4 h-4 mt-1 text-black hidden peer-checked:block pointer-events-none"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+
+          <div class="flex items-center mb-3 gap-4">
+            <input
+              type="checkbox"
+              id="numbers"
+              name="password-includes"
+              value="numbers"
+              class="relative peer appearance-none w-4 h-4 bg-transparent border-2 border-green-100 mt-1 checked:bg-green-400 checked:border-0 cursor-pointer hover:border-green-500"
+            />
+            <label
+              for="numbers"
+              class="text-stone-300 font-medium font-family text-sm mt-1"
+              >Include Numbers</label
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              class="size-6 absolute w-4 h-4 mt-1 text-black hidden peer-checked:block pointer-events-none"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+
+          <div class="flex items-center mb-3 gap-4">
+            <input
+              type="checkbox"
+              id="symbols"
+              name="password-includes"
+              value="symbols"
+              class="relative peer appearance-none w-4 h-4 bg-transparent border-2 border-green-100 mt-1 checked:bg-green-400 checked:border-0 cursor-pointer hover:border-green-500"
+            />
+            <label
+              for="symbols"
+              class="text-stone-300 font-medium font-family text-sm mt-1"
+              >Include Symbols</label
+            >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              stroke="currentColor"
+              stroke-width="2"
+              class="size-6 absolute w-4 h-4 mt-1 text-black hidden peer-checked:block pointer-events-none"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div
+          class="flex items-center justify-between h-12 bg-black py-0 px-4 mb-4"
+        >
+          <span class="text-stone-300 opacity-50 text-sm font-family"
+            >STRENGTH</span
+          >
+          <div id="strength-score" class="flex gap-2">
+            <span
+              id="strength-text"
+              class="font-family text-stone-300 font-medium"
+            ></span>
+            <div class="flex gap-1">
+              <div class="w-2 h-6 border-2 border-stone-200" id="bar1"></div>
+              <div class="w-2 h-6 border-2 border-stone-200" id="bar2"></div>
+              <div class="w-2 h-6 border-2 border-stone-200" id="bar3"></div>
+              <div class="w-2 h-6 border-2 border-stone-200" id="bar4"></div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          id="generate-btn"
+          class="flex items-center justify-center gap-2.5 w-full border-2 bg-green-500 cursor-pointer h-14 font-family font-medium text-md text-black hover:bg-transparent hover:border-green-500 hover:text-green-500"
+        >
+          <span>GENERATE</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 35 24"
+            stroke-width="2.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </button>
+        <div
+          id="error-message"
+          class="text-red-500 font-medium font-family text-sm text-center mt-2.5"
+        ></div>
+      </form>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

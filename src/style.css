@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-family: "JetBrains Mono", sans-serif;
+}
+
+.peer::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  @apply w-5 h-5 bg-green-100 rounded-full shadow-md transition duration-200 border-2 border-transparent;
+  margin-top: -2px;
+}
+
+.peer:hover::-webkit-slider-thumb {
+  @apply bg-stone-900 scale-110 border-green-400;
+}
+
+.peer::-moz-range-thumb {
+  @apply w-5 h-5 bg-green-100 rounded-full shadow-md transition duration-200 border-2 border-transparent;
+  margin-top: -2px;
+}
+
+.peer:hover::-moz-range-thumb {
+  @apply bg-stone-900 scale-110 border-2 border-green-400;
+}
